@@ -1,5 +1,8 @@
 # knex-projeto-01
 
+> Exercício da Formação NodeJS do Guia do Programador na Udemy
+
+
 ```
 docker run -e MYSQL_ROOT_PASSWORD=docker -e MYSQL_USER=docker -e MYSQL_PASSWORD=docker -p 3306:3306 -d mysql:8
 
