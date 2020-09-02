@@ -7,6 +7,10 @@ const secret = 'ldfasakdmclakmclksmcakmks'
 
 class UserController {
 
+    async validate(req, res) {
+        res.send('ok!');
+    }
+
     async index(req, res) {
         var users = await User.findAll();
         res.json(users);
@@ -29,7 +33,7 @@ class UserController {
 
         var { email, name, password } = req.body;
 
-        if (email == undefined) {
+        if (email == undefined || email == '' || email == ' ') {
             res.status(400);
             res.json({err: 'email inválido'});
             return;
@@ -107,7 +111,7 @@ class UserController {
             res.send('Senha alterada com sucesso');
         } else {
             res.status(406);
-            res.send('Token inválido!');
+            res.json({err: 'Token inválido!'});
         }
     }
 
@@ -126,11 +130,11 @@ class UserController {
                 res.json({ token: token });
             } else {
                 res.status(406);
-                res.json({ status: false });
+                res.json({ status: false, err: 'Senha incorreta'});
             }
         } else {
             res.status(406);
-            res.json({ status: false });
+            res.json({ status: false, err: 'Usuário não existe!' });
         }
     }
 }
